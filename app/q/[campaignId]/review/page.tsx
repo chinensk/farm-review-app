@@ -95,9 +95,7 @@ export default function ReviewPage() {
     meta: { copied },
   });
 
-  // 👇 THANKSにだけ遷移
-  window.location.href = `/thanks?couponId=${couponId}`;
-};
+  openWithFallbacks(); // ←これだけ残す
 
   setBusy(false);
 };
