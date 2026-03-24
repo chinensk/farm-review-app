@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"; 
 import { useParams } from "next/navigation"; 
 import { supabase } from "@/lib/supabase"; 
+import Image from "next/image";
  
 export default function CouponPage() { 
   const params = useParams<{ couponId: string }>(); 
@@ -81,6 +82,20 @@ const cancelPress = () => {
  
   return ( 
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}> 
+	<div style={{ marginBottom: 12 }}>
+  <Image
+    src="/coupon.png"
+    alt="クーポン"
+    width={560}
+    height={300}
+    style={{
+      width: "100%",
+      height: "auto",
+      borderRadius: 12,
+      objectFit: "cover",
+    }}
+  />
+</div>
       <h1 style={{ fontSize: 22 }}>{coupon.title}</h1> 
  
       <div
