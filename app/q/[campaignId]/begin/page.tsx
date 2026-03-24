@@ -26,6 +26,10 @@ export default function BeginPage() {
   const router = useRouter(); 
   const params = useParams<{ campaignId: string }>(); 
   const campaignId = params.campaignId; 
+  
+  // 👇 ここに追加（重要）
+  const [rating, setRating] = useState<number | null>(null);
+  const [hover, setHover] = useState(0);
  
   // 設問１：★（必須） 
   const [rating, setRating] = useState<number | null>(null); 
@@ -123,9 +127,6 @@ export default function BeginPage() {
         <div style={{ fontWeight: 800, marginBottom: 8 }}> 
           設問１：ブルーベリー狩りは楽しかったですか？（必須） 
         </div> 
- 
-        const [rating, setRating] = useState<number | null>(null);
-const [hover, setHover] = useState(0);
 
 <div style={{ display: "flex", gap: 8 }}>
   {[1, 2, 3, 4, 5].map((n) => (
