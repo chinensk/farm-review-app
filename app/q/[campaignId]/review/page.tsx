@@ -99,7 +99,7 @@ export default function ReviewPage() {
 	
 	// 2秒後にありがとう画面へ
 setTimeout(() => {
-  window.location.href = "/thanks";
+  window.location.href = `/thanks?couponId=${couponId}`;
 }, 2000);
 
     setBusy(false);

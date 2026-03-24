@@ -1,8 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export default function ThanksPage() {
+const searchParams = useSearchParams();
+const couponId = searchParams.get("couponId");
+
   return (
     <div
       style={{
@@ -30,6 +34,25 @@ export default function ThanksPage() {
         <br />
         またのご来園をお待ちしております！
       </p>
+	  
+	  {couponId && (
+  <div style={{ marginTop: 12 }}>
+    <a
+      href={`/coupon/${couponId}`}
+      style={{
+        display: "inline-block",
+        padding: "12px 20px",
+        borderRadius: 12,
+        background: "#16a34a",
+        color: "#fff",
+        fontWeight: 800,
+        textDecoration: "none",
+      }}
+    >
+      クーポンを表示する
+    </a>
+  </div>
+)}
 
       <div style={{ marginTop: 24 }}>
         <a
