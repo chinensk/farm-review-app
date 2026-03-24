@@ -160,23 +160,58 @@ export default function BeginPage() {
         </div> 
       </div> 
  
-      {rating !== null && rating <= 3 && ( 
-        <div style={{ marginTop: 12, padding: 14, borderRadius: 12, border: "1px solid #f3d0d0", background: "#fff7f7" }}> 
-          <div style={{ fontWeight: 800, marginBottom: 8 }}> 
-            より良くするため、改善点があれば教えてください（任意） 
-          </div> 
-          <textarea 
-            value={feedback} 
-            onChange={(e) => setFeedback(e.target.value)} 
-            rows={4} 
-            placeholder="例：駐車場が少し分かりづらかった / 休憩スペースがあると嬉しい など" 
-            style={{ width: "100%", padding: 12, borderRadius: 10, border: "1px solid #ddd" }} 
-          /> 
-          <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}> 
-            ※ こちらは外部に公開されません（農園改善のための内部用です）。 
-          </div> 
-        </div> 
-      )} 
+      {rating !== null && rating <= 3 && (() => {
+  const isDark = typeof window !== "undefined" &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  return (
+    <div
+      style={{
+        marginTop: 12,
+        padding: 14,
+        borderRadius: 12,
+        border: isDark ? "1px solid #444" : "1px solid #ddd",
+        background: "var(--background)"
+      }}
+    >
+      <div
+        style={{
+          fontWeight: 800,
+          marginBottom: 8,
+          color: "var(--foreground)"
+        }}
+      >
+        より良くするため、改善点があれば教えてください（任意）
+      </div>
+
+      <textarea
+        value={feedback}
+        onChange={(e) => setFeedback(e.target.value)}
+        rows={4}
+        placeholder="例：駐車場が少し分かりづらかった / 休憩スペースがあると嬉しい など"
+        style={{
+          width: "100%",
+          padding: 12,
+          borderRadius: 10,
+          border: isDark ? "1px solid #555" : "1px solid #ddd",
+          background: "var(--background)",
+          color: "var(--foreground)"
+        }}
+      />
+
+      <div
+        style={{
+          marginTop: 8,
+          fontSize: 12,
+          color: "var(--foreground)",
+          opacity: 0.7
+        }}
+      >
+        ※ こちらは外部に公開されません（農園改善のための内部用です）。
+      </div>
+    </div>
+  );
+})()}
  
       <div style={{ marginTop: 16 }}> 
         <button 
