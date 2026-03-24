@@ -26,13 +26,11 @@ export default function BeginPage() {
   const router = useRouter(); 
   const params = useParams<{ campaignId: string }>(); 
   const campaignId = params.campaignId; 
-  
-  // 👇 ここに追加（重要）
-  const [rating, setRating] = useState<number | null>(null);
-  const [hover, setHover] = useState(0);
  
   // 設問１：★（必須） 
   const [rating, setRating] = useState<number | null>(null); 
+  // 👇 ここに追加（重要）
+  const [hover, setHover] = useState(0);
   // 設問２：感想（自由記述、レビュー文にも使う） 
   const [comment, setComment] = useState(""); 
   // ★1-3の改善フィードバック（任意） 
