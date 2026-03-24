@@ -95,13 +95,9 @@ export default function ReviewPage() {
     meta: { copied },
   });
 
-  // 👇 ① 先にTHANKSへ
+  // 👇 THANKSにだけ遷移
   window.location.href = `/thanks?couponId=${couponId}`;
-
-  // 👇 ② 少し遅れてGoogleへ
-  setTimeout(() => {
-    openWithFallbacks();
-  }, 500);
+};
 
   setBusy(false);
 };

@@ -36,23 +36,45 @@ export default function ThanksClient() {
       </p>
 
       {couponId && (
-        <div style={{ marginTop: 12 }}>
-          <a
-            href={`/coupon/${couponId}`}
-            style={{
-              display: "inline-block",
-              padding: "12px 20px",
-              borderRadius: 12,
-              background: "#16a34a",
-              color: "#fff",
-              fontWeight: 800,
-              textDecoration: "none",
-            }}
-          >
-            クーポンを表示する
-          </a>
-        </div>
-      )}
+  <div style={{ marginTop: 12 }}>
+    <a
+      href={`/coupon/${couponId}`}
+      style={{
+        display: "inline-block",
+        padding: "12px 20px",
+        borderRadius: 12,
+        background: "#16a34a",
+        color: "#fff",
+        fontWeight: 800,
+        textDecoration: "none",
+      }}
+    >
+      クーポンを表示する
+    </a>
+  </div>
+)}
+
+{/* 👇ここに追加 */}
+<div style={{ marginTop: 16 }}>
+  <button
+    onClick={() => {
+      window.location.href =
+        "https://search.google.com/local/writereview?placeid=ChIJ2ROb0Y-VImARRaOWfpI4ziA";
+    }}
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: 0,
+      background: "#f97316",
+      color: "#fff",
+      fontWeight: 900,
+      fontSize: 16,
+    }}
+  >
+    Googleで口コミを書く
+  </button>
+</div>
 
       <div style={{ marginTop: 24 }}>
         <a
