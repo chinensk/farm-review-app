@@ -82,28 +82,29 @@ export default function ReviewPage() {
   };
 
   const post = async () => {
-    setBusy(true);
+  setBusy(true);
 
-    let copied = false;
-    try {
-      await navigator.clipboard.writeText(text);
-      copied = true;
-    } catch {}
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch {}
 
-    await supabase.from("events").insert({
-      event_name: "review_cta_clicked",
-      meta: { copied },
-    });
+  await supabase.from("events").insert({
+    event_name: "review_cta_clicked",
+    meta: { copied },
+  });
 
-    openWithFallbacks();
-	
-	// 2秒後にありがとう画面へ
-setTimeout(() => {
+  // 👇 ① 先にTHANKSへ
   window.location.href = `/thanks?couponId=${couponId}`;
-}, 2000);
 
-    setBusy(false);
-  };
+  // 👇 ② 少し遅れてGoogleへ
+  setTimeout(() => {
+    openWithFallbacks();
+  }, 500);
+
+  setBusy(false);
+};
 
   return (
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}>
