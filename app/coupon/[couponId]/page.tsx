@@ -83,14 +83,39 @@ const cancelPress = () => {
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}> 
       <h1 style={{ fontSize: 22 }}>{coupon.title}</h1> 
  
-      <div style={{ marginTop: 8, padding: 12, borderRadius: 12, background: "#fff7ed", border: "1px solid #fed7aa" }}> 
-        <b>当日限り有効</b>（〜 {exp.toLocaleString()}） 
-      </div> 
- 
-      <h2 style={{ marginTop: 16 }}>利用条件</h2> 
-      <pre style={{ whiteSpace: "pre-wrap", background: "#f5f5f5", padding: 12, borderRadius: 12 }}> 
-        {coupon.conditions} 
-      </pre> 
+      <div
+  style={{
+    marginTop: 8,
+    padding: 12,
+    borderRadius: 12,
+    background: "var(--background)",
+    border: "1px solid #888"
+  }}
+>
+  <b style={{ color: "var(--foreground)" }}>
+    当日限り有効
+  </b>
+  <span style={{ color: "var(--foreground)", opacity: 0.8 }}>
+    （〜 {exp.toLocaleString()}）
+  </span>
+</div>
+
+<h2 style={{ marginTop: 16, color: "var(--foreground)" }}>
+  利用条件
+</h2>
+
+<pre
+  style={{
+    whiteSpace: "pre-wrap",
+    background: "var(--background)",
+    color: "var(--foreground)",
+    padding: 12,
+    borderRadius: 12,
+    border: "1px solid #888"
+  }}
+>
+  {coupon.conditions}
+</pre>
  
       <div style={{ height: 12 }} /> 
       {coupon.status === "redeemed" ? ( 
