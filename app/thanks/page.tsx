@@ -1,13 +1,16 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ThanksPage() {
-const searchParams = useSearchParams();
-const couponId = searchParams.get("couponId");
+  const searchParams = useSearchParams();
+  const [couponId, setCouponId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCouponId(searchParams.get("couponId"));
+  }, [searchParams]);
 
   return (
     <div
@@ -19,12 +22,7 @@ const couponId = searchParams.get("couponId");
       }}
     >
       <div style={{ marginBottom: 24 }}>
-        <Image
-          src="/logo.png"
-          alt="logo"
-          width={120}
-          height={120}
-        />
+        <Image src="/logo.png" alt="logo" width={120} height={120} />
       </div>
 
       <h1 style={{ fontSize: 24, fontWeight: 900 }}>
@@ -36,25 +34,25 @@ const couponId = searchParams.get("couponId");
         <br />
         またのご来園をお待ちしております！
       </p>
-	  
-	  {couponId && (
-  <div style={{ marginTop: 12 }}>
-    <a
-      href={`/coupon/${couponId}`}
-      style={{
-        display: "inline-block",
-        padding: "12px 20px",
-        borderRadius: 12,
-        background: "#16a34a",
-        color: "#fff",
-        fontWeight: 800,
-        textDecoration: "none",
-      }}
-    >
-      クーポンを表示する
-    </a>
-  </div>
-)}
+
+      {couponId && (
+        <div style={{ marginTop: 12 }}>
+          <a
+            href={`/coupon/${couponId}`}
+            style={{
+              display: "inline-block",
+              padding: "12px 20px",
+              borderRadius: 12,
+              background: "#16a34a",
+              color: "#fff",
+              fontWeight: 800,
+              textDecoration: "none",
+            }}
+          >
+            クーポンを表示する
+          </a>
+        </div>
+      )}
 
       <div style={{ marginTop: 24 }}>
         <a
