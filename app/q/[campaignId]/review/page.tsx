@@ -96,6 +96,12 @@ export default function ReviewPage() {
     });
 
     openWithFallbacks();
+	
+	// 2秒後にありがとう画面へ
+setTimeout(() => {
+  window.location.href = "/thanks";
+}, 2000);
+
     setBusy(false);
   };
 
