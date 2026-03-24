@@ -124,24 +124,28 @@ export default function BeginPage() {
           設問１：ブルーベリー狩りは楽しかったですか？（必須） 
         </div> 
  
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}> 
-          {[1, 2, 3, 4, 5].map((n) => ( 
-            <button 
-              key={n} 
-              onClick={() => setRating(n)} 
-              style={{ 
-                padding: "10px 12px", 
-                border: "1px solid #ccc", 
-                borderRadius: 10, 
-                background: rating === n ? "#111" : "#fff", 
-                color: rating === n ? "#fff" : "#111", 
-                fontWeight: 800, 
-              }} 
-            > 
-              {"★".repeat(n)} 
-            </button> 
-          ))} 
-        </div> 
+        const [rating, setRating] = useState<number | null>(null);
+const [hover, setHover] = useState(0);
+
+<div style={{ display: "flex", gap: 8 }}>
+  {[1, 2, 3, 4, 5].map((n) => (
+    <span
+      key={n}
+      onClick={() => setRating(n)}
+      onMouseEnter={() => setHover(n)}
+      onMouseLeave={() => setHover(0)}
+      style={{
+        fontSize: 32,
+        cursor: "pointer",
+        color: n <= (hover || rating || 0) ? "#f97316" : "#ccc",
+        transition: "0.2s",
+        transform: n === rating ? "scale(1.2)" : "scale(1)"
+      }}
+    >
+      ★
+    </span>
+  ))}
+</div>
       </div> 
  
       <div style={{ marginTop: 12, padding: 14, borderRadius: 12, border: "1px solid #eee" }}> 
