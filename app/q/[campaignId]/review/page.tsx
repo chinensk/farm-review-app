@@ -107,8 +107,8 @@ export default function ReviewPage() {
       </h1>
 
       <p style={{ marginTop: 0, color: "var(--foreground)", opacity: 0.85 }}>
-        あなたの口コミが、次に来るお客様の安心になります。<br />
-        <b>ボタンを押すと投稿文がコピー</b>され、Googleマップが開きます。
+        あなたのクチコミが、次のお客様の参考になります。<br />
+        <b>オレンジのボタンを押すと投稿文がコピーされ、Googleが開きますので、&star;を選択 &rarr; 投稿文をペーストし</b>投稿いただけると嬉しいです。
       </p>
 
       <div
@@ -121,7 +121,7 @@ export default function ReviewPage() {
         }}
       >
         <div style={{ fontWeight: 800, marginBottom: 8, color: "var(--foreground)" }}>
-          投稿内容（編集は任意）
+          投稿内容（&plus;ボタンで追記可能）
         </div>
 
         <textarea
@@ -173,8 +173,12 @@ export default function ReviewPage() {
             fontSize: 16,
           }}
         >
-          {busy ? "起動中..." : "Googleで口コミを書く（自動コピー）"}
+          {busy ? "起動中..." : "Googleでクチコミを書く（移動します）"}
         </button>
+        
+        <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
+        貼り付け方法：Google画面で長押し →「貼り付け」→ 投稿
+      </div>
 
         {couponId && (
           <button
@@ -193,11 +197,12 @@ export default function ReviewPage() {
             クーポンを見る
           </button>
         )}
+        
+        <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
+        利用方法：Google投稿後、ブラウザの戻るボタンでこのページまでお戻りください
+      </div>
       </div>
 
-      <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
-        貼り付け方法：Google画面で長押し →「貼り付け」→ 投稿
-      </div>
     </div>
   );
 }

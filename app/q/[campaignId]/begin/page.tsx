@@ -118,7 +118,7 @@ export default function BeginPage() {
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}> 
       <h1 style={{ fontSize: 22, marginBottom: 8 }}>30秒アンケート</h1> 
       <p style={{ marginTop: 0, color: "#444" }}> 
-        ご協力いただいた方に <b>当日限りのクーポン</b> をお渡しします。 
+        ご協力いただいた方に <b>当日限りのクーポン</b> を差し上げます
       </p> 
  
       <div style={{ marginTop: 16, padding: 14, borderRadius: 12, border: "1px solid #eee" }}> 
@@ -159,7 +159,7 @@ export default function BeginPage() {
           style={{ width: "100%", padding: 12, borderRadius: 10, border: "1px solid #ddd" }} 
         /> 
         <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}> 
-          ※ ★4〜5の方は、この内容をそのままコピーしてGoogleマップに投稿できます。 
+          ※ ★4〜5の方は、この内容をコピーしてGoogleに投稿できます
         </div> 
       </div> 
  
@@ -210,7 +210,7 @@ export default function BeginPage() {
           opacity: 0.7
         }}
       >
-        ※ こちらは外部に公開されません（農園改善のための内部用です）。
+        ※ こちらは外部に公開されません（農園改善のための内部用です）
       </div>
     </div>
   );
