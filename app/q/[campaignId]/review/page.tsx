@@ -103,12 +103,12 @@ export default function ReviewPage() {
   return (
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}>
       <h1 style={{ fontSize: 22, marginBottom: 8, color: "var(--foreground)" }}>
-        最後にお願いがあります
+        ご協力ありがとうございます！
       </h1>
 
       <p style={{ marginTop: 0, color: "var(--foreground)", opacity: 0.85 }}>
-        あなたのクチコミが、次のお客様の参考になります。<br />
-        <b>オレンジのボタンを押すと投稿文がコピーされ、Googleが開きますので、☆を選択 → 投稿文をペーストし</b>投稿いただけると嬉しいです。
+        あなたのクチコミが、みなさまの参考になります<br />
+        <b>オレンジのボタンを押すと投稿文がコピーされ、Googleが開きますので、☆を選択 → 投稿文をペースト</b>して投稿いただけると嬉しいです
       </p>
 
       <div
@@ -173,11 +173,11 @@ export default function ReviewPage() {
             fontSize: 16,
           }}
         >
-          {busy ? "起動中..." : "Googleでクチコミを書く（移動します）"}
+          {busy ? "起動中..." : "Googleクチコミ投稿（次ページでペースト）"}
         </button>
         
         <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
-        投稿方法：Google画面で☆選択 → 感想欄に「貼り付け」→ 投稿
+        投稿方法：Google画面で☆選択 → 感想欄に「ペースト」→ 投稿
       </div>
 
         {couponId && (
@@ -194,7 +194,7 @@ export default function ReviewPage() {
               fontWeight: 800,
             }}
           >
-            クーポン表示
+            クーポンを表示する
           </button>
         )}
         
