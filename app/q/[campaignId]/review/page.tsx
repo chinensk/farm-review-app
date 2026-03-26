@@ -108,7 +108,7 @@ export default function ReviewPage() {
 
       <p style={{ marginTop: 0, color: "var(--foreground)", opacity: 0.85 }}>
         あなたのクチコミが、次のお客様の参考になります。<br />
-        <b>オレンジのボタンを押すと投稿文がコピーされ、Googleが開きますので、&star;を選択 &rarr; 投稿文をペーストし</b>投稿いただけると嬉しいです。
+        <b>オレンジのボタンを押すと投稿文がコピーされ、Googleが開きますので、☆を選択 → 投稿文をペーストし</b>投稿いただけると嬉しいです。
       </p>
 
       <div
@@ -121,7 +121,7 @@ export default function ReviewPage() {
         }}
       >
         <div style={{ fontWeight: 800, marginBottom: 8, color: "var(--foreground)" }}>
-          投稿内容（&plus;ボタンで追記可能）
+          投稿内容（＋ボタンで追記可能）
         </div>
 
         <textarea
@@ -177,7 +177,7 @@ export default function ReviewPage() {
         </button>
         
         <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
-        貼り付け方法：Google画面で長押し →「貼り付け」→ 投稿
+        投稿方法：Google画面で☆選択 → 感想欄に「貼り付け」→ 投稿
       </div>
 
         {couponId && (
@@ -194,7 +194,7 @@ export default function ReviewPage() {
               fontWeight: 800,
             }}
           >
-            クーポンを見る
+            クーポン表示
           </button>
         )}
         

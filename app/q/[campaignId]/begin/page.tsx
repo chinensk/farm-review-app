@@ -159,7 +159,7 @@ export default function BeginPage() {
           style={{ width: "100%", padding: 12, borderRadius: 10, border: "1px solid #ddd" }} 
         /> 
         <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}> 
-          ※ ★4〜5の方は、この内容をコピーしてGoogleに投稿できます
+          ※ ★4〜5の方は、上記内容のコピーをGoogleに投稿できます
         </div> 
       </div> 
  
