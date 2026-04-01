@@ -108,7 +108,7 @@ export default function ReviewPage() {
 
       <p style={{ marginTop: 0, color: "var(--foreground)", opacity: 0.85 }}>
         あなたのクチコミが、みなさまの参考になります<br />
-        <b>オレンジのボタンを押すと投稿文がコピーされ、Googleが開きますので、☆を選択 → 投稿文をペースト</b>して投稿いただけると嬉しいです
+        <b>紫色のボタンを押すと投稿文がコピーされ、Googleが開きますので、☆を選択 → 投稿文をペースト</b>して投稿いただけると嬉しいです
       </p>
 
       <div
@@ -167,7 +167,7 @@ export default function ReviewPage() {
             padding: 14,
             borderRadius: 12,
             border: 0,
-            background: "#f97316",
+            background: "#684298",
             color: "#fff",
             fontWeight: 900,
             fontSize: 16,

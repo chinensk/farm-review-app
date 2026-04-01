@@ -151,7 +151,7 @@ const cancelPress = () => {
       padding: 14,
       borderRadius: 12,
       border: 0,
-      background: pressing ? "#ea580c" : "#f97316",
+      background: pressing ? "#4c306e" : "#684298",
       color: "#fff",
       fontWeight: 900,
     }}

@@ -136,7 +136,7 @@ export default function BeginPage() {
       style={{
         fontSize: 32,
         cursor: "pointer",
-        color: n <= (hover || rating || 0) ? "#f97316" : "#ccc",
+        color: n <= (hover || rating || 0) ? "#684298" : "#ccc",
         transition: "0.2s",
         transform: n === rating ? "scale(1.2)" : "scale(1)"
       }}
@@ -225,7 +225,7 @@ export default function BeginPage() {
             padding: 14, 
             borderRadius: 12, 
             border: 0, 
-            background: "#f97316", 
+            background: "#684298", 
             color: "#fff", 
             fontWeight: 900, 
             fontSize: 16, 
