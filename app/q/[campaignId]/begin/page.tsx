@@ -111,7 +111,7 @@ export default function BeginPage() {
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}>
       <h1 style={{ fontSize: 22, marginBottom: 8 }}>30秒アンケート</h1>
       <p style={{ marginTop: 0, color: "#444" }}>
-        ご協力いただいた方に <b>当日限りのクーポン</b> を差し上げます
+        ご協力いただいた方に <b>当日限りのクーポン</b> を差し上げます。
       </p>
 
       {/* ★設問1（完全復元） */}
