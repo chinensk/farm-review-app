@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 function endOfTodayJSTISOString() {
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60_000;
-  const jst = new Date(utc + 9 * 60 * 60_000);
+  const jst = new Date(utc + 9 * 60 * 60_000;
 
   const y = jst.getFullYear();
   const m = jst.getMonth();
@@ -19,9 +19,7 @@ function endOfTodayJSTISOString() {
 export default function BeginPage() {
   const router = useRouter();
   const params = useParams();
-
-  // ★安全に取得（ここ重要）
-  const campaignId = params?.campaignId as string;
+  const campaignId = params.campaignId;
 
   const [rating, setRating] = useState<number | null>(null);
   const [hover, setHover] = useState(0);
@@ -32,16 +30,12 @@ export default function BeginPage() {
   const canSubmit = useMemo(() => rating !== null, [rating]);
 
   const submit = async () => {
-    if (!canSubmit || !campaignId || rating === null) {
-      alert("エラー：campaignIdが取得できていません");
-      return;
-    }
-
+    if (!canSubmit) return;
     setLoading(true);
 
     const { data: camp, error: campErr } = await supabase
       .from("campaigns")
-      .select("id, store_id, coupon_title, coupon_conditions")
+      .select("id, store_id, coupon_title, coupon_conditions, stores(place_id)")
       .eq("id", campaignId)
       .single();
 
@@ -51,20 +45,21 @@ export default function BeginPage() {
       return;
     }
 
-    const { data: res, error: resErr } = await supabase
+    const responseId = crypto.randomUUID();
+
+    const { error: resErr } = await supabase
       .from("responses")
       .insert({
+        id: responseId,
         store_id: camp.store_id,
         campaign_id: camp.id,
         rating,
         q1: null,
         q2: comment || null,
-        feedback: rating <= 3 ? (feedback || null) : null,
-      })
-      .select("id")
-      .single();
+        feedback: (rating !== null && rating <= 3) ? (feedback || null) : null,
+      });
 
-    if (resErr || !res) {
+    if (resErr) {
       alert("送信に失敗しました");
       setLoading(false);
       return;
@@ -75,7 +70,7 @@ export default function BeginPage() {
     const { data: coupon, error: cErr } = await supabase
       .from("coupons")
       .insert({
-        response_id: res.id,
+        response_id: responseId,
         store_id: camp.store_id,
         campaign_id: camp.id,
         title: camp.coupon_title,
@@ -95,16 +90,14 @@ export default function BeginPage() {
     await supabase.from("events").insert({
       store_id: camp.store_id,
       campaign_id: camp.id,
-      response_id: res.id,
+      response_id: responseId,
       coupon_id: coupon.id,
       event_name: "survey_submitted",
       meta: { rating },
     });
 
-    if (rating >= 4) {
-      router.push(
-        `/q/${campaignId}/review?couponId=${coupon.id}&responseId=${res.id}`
-      );
+    if (rating !== null && rating >= 4) {
+      router.push(`/q/${campaignId}/review?couponId=${coupon.id}&responseId=${responseId}`);
     } else {
       router.push(`/coupon/${coupon.token}`);
     }
@@ -119,6 +112,7 @@ export default function BeginPage() {
         ご協力いただいた方に <b>当日限りのクーポン</b> を差し上げます
       </p>
 
+      {/* ★設問1（完全復元） */}
       <div style={{ marginTop: 16, padding: 14, borderRadius: 12, border: "1px solid #eee" }}>
         <div style={{ fontWeight: 800, marginBottom: 8 }}>
           設問１：ブルーベリー狩りは楽しかったですか？（必須）
@@ -136,6 +130,7 @@ export default function BeginPage() {
                 cursor: "pointer",
                 color: n <= (hover || rating || 0) ? "#684298" : "#ccc",
                 transition: "0.2s",
+                transform: n === rating ? "scale(1.2)" : "scale(1)",
               }}
             >
               ★
@@ -144,7 +139,7 @@ export default function BeginPage() {
         </div>
       </div>
 
-      {/* ↓ UIは完全そのまま */}
+      {/* ★設問2（完全復元） */}
       <div style={{ marginTop: 12, padding: 14, borderRadius: 12, border: "1px solid #eee" }}>
         <div style={{ fontWeight: 800, marginBottom: 8 }}>
           設問２：東金ジャンボブルーベリー農園の感想を教えてください（任意）
@@ -156,7 +151,46 @@ export default function BeginPage() {
           placeholder="例：粒が大きくて甘かったです。スタッフの方も親切でまた来たいです！"
           style={{ width: "100%", padding: 12, borderRadius: 10, border: "1px solid #ddd" }}
         />
+        <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}>
+          ※ ★4〜5の方は、上記内容のコピーをGoogleに投稿できます
+        </div>
       </div>
+
+      {/* ★改善フィードバック（完全復元） */}
+      {rating !== null && rating <= 3 && (() => {
+        const isDark = typeof window !== "undefined" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        return (
+          <div style={{
+            marginTop: 12,
+            padding: 14,
+            borderRadius: 12,
+            border: isDark ? "1px solid #444" : "1px solid #ddd",
+          }}>
+            <div style={{ fontWeight: 800, marginBottom: 8 }}>
+              より良くするため、改善点があれば教えてください（任意）
+            </div>
+
+            <textarea
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              rows={4}
+              placeholder="例：駐車場が少し分かりづらかった / 休憩スペースがあると嬉しい など"
+              style={{
+                width: "100%",
+                padding: 12,
+                borderRadius: 10,
+                border: "1px solid #ddd",
+              }}
+            />
+
+            <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}>
+              ※ こちらは外部に公開されません（農園改善のための内部用です）
+            </div>
+          </div>
+        );
+      })()}
 
       <div style={{ marginTop: 16 }}>
         <button
@@ -170,6 +204,8 @@ export default function BeginPage() {
             background: "#684298",
             color: "#fff",
             fontWeight: 900,
+            fontSize: 16,
+            opacity: !canSubmit || loading ? 0.6 : 1,
           }}
         >
           {loading ? "送信中..." : "送信して次へ（クーポン表示）"}
