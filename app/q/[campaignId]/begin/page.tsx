@@ -22,7 +22,7 @@ export default function BeginPage() {
   const campaignId = params.campaignId;
 
   const [rating, setRating] = useState<number | null>(null);
-  const [hover, setHover] = useState(0);
+  const jst = new Date(utc + 9 * 60 * 60_000);
   const [comment, setComment] = useState("");
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
