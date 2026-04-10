@@ -23,7 +23,7 @@ export default function ReviewPage() {
   const couponId = searchParams.get("couponId");
   const responseId = searchParams.get("responseId");
 
-  // 👇 追加（URLからも受け取る）
+  // ✅ 追加（ここだけ新規）
   const commentParam = searchParams.get("comment");
 
   const [text, setText] = useState("");
@@ -32,13 +32,13 @@ export default function ReviewPage() {
   useEffect(() => {
     const load = async () => {
 
-      // ✅ ① URLにcommentがあれば最優先
+      // ✅ URLから来たコメントを最優先
       if (commentParam) {
         setText(commentParam);
         return;
       }
 
-      // ✅ ② なければDB
+      // ✅ なければDB
       if (!responseId) {
         setText("粒が大きくて甘かったです。スタッフの方も親切でまた来たいです！");
         return;
@@ -115,30 +115,106 @@ export default function ReviewPage() {
 
   return (
     <div style={{ maxWidth: 560, margin: "0 auto", padding: 16 }}>
-      <h1 style={{ fontSize: 22, marginBottom: 8 }}>
+      <h1 style={{ fontSize: 22, marginBottom: 8, color: "var(--foreground)" }}>
         ご協力ありがとうございます！
       </h1>
 
-      <p>
-        紫のボタンを押すとコピー＆Googleが開きます
+      <p style={{ marginTop: 0, color: "var(--foreground)", opacity: 0.85 }}>
+        あなたのクチコミが、みなさまの参考になります<br />
+        <b>紫色のボタンを押すと投稿文がコピーされ、Googleが開きますので、☆を選択 → 投稿文をペースト</b>して投稿いただけると嬉しいです
       </p>
 
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        rows={6}
-        style={{ width: "100%", padding: 12 }}
-      />
+      <div
+        style={{
+          marginTop: 16,
+          padding: 14,
+          borderRadius: 12,
+          border: "1px solid #888",
+          background: "var(--background)",
+        }}
+      >
+        <div style={{ fontWeight: 800, marginBottom: 8, color: "var(--foreground)" }}>
+          投稿内容（＋ボタンで追記可能）
+        </div>
 
-      <button onClick={post} disabled={busy}>
-        投稿する
-      </button>
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          rows={6}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #888",
+            background: "var(--background)",
+            color: "var(--foreground)",
+          }}
+        />
 
-      {couponId && (
-        <button onClick={() => router.push(`/coupon/${couponId}`)}>
-          クーポン表示
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
+          {chips.map((c) => (
+            <button
+              key={c}
+              onClick={() => addChip(c)}
+              style={{
+                border: "1px solid #888",
+                borderRadius: 999,
+                padding: "6px 10px",
+                background: "var(--background)",
+                color: "var(--foreground)",
+                cursor: "pointer",
+              }}
+            >
+              + {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ marginTop: 14 }}>
+        <button
+          onClick={post}
+          disabled={busy}
+          style={{
+            width: "100%",
+            padding: 14,
+            borderRadius: 12,
+            border: 0,
+            background: "#684298",
+            color: "#fff",
+            fontWeight: 900,
+            fontSize: 16,
+          }}
+        >
+          {busy ? "起動中..." : "Googleクチコミ投稿（次ページでペースト）"}
         </button>
-      )}
+
+        <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
+          投稿方法：Google画面で☆選択 → 感想欄に「ペースト」→ 投稿
+        </div>
+
+        {couponId && (
+          <button
+            onClick={() => router.push(`/coupon/${couponId}`)}
+            style={{
+              width: "100%",
+              padding: 12,
+              borderRadius: 12,
+              border: "1px solid #888",
+              background: "var(--background)",
+              color: "var(--foreground)",
+              marginTop: 10,
+              fontWeight: 800,
+            }}
+          >
+            クーポンを表示する
+          </button>
+        )}
+
+        <div style={{ marginTop: 10, fontSize: 12, color: "#999" }}>
+          利用方法：Google投稿後、ブラウザの戻るボタンでこのページまでお戻りください
+        </div>
+      </div>
     </div>
   );
 }
