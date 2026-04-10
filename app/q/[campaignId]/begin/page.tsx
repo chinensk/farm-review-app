@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 function endOfTodayJSTISOString() {
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60_000;
-  const jst = new Date(utc + 9 * 60 * 60_000;
+  const jst = new Date(utc + 9 * 60 * 60_000);
 
   const y = jst.getFullYear();
   const m = jst.getMonth();
