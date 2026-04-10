@@ -58,7 +58,7 @@ export default function BeginPage() {
         rating,
         q1: null,
         q2: comment || null,
-        feedback: rating <= 3 ? (feedback || null) : null,
+        feedback: (rating !== null && rating <= 3) ? (feedback || null) : null,
       });
 
     if (resErr) {
