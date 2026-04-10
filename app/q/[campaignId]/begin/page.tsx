@@ -98,7 +98,7 @@ export default function BeginPage() {
       meta: { rating },
     });
 
-    if (rating >= 4) {
+    if (rating !== null && rating >= 4) {
       router.push(`/q/${campaignId}/review?couponId=${coupon.id}&responseId=${responseId}`);
     } else {
       router.push(`/coupon/${coupon.token}`);
